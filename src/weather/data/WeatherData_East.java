@@ -54,6 +54,9 @@ public class WeatherData_East implements Subject, WeatherData {
 	public float getPressure() {
 		return pressure;
 	}
-
+	@Override
+	public String toString() {
+		return "Weather Data East";
+	}
 }
 
