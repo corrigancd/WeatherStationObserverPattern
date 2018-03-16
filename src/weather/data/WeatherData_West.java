@@ -29,7 +29,7 @@ public class WeatherData_West implements Subject, WeatherData {
 			//iterate and call update method of observers
 			o.update(temperature, humidity, pressure);
 		}
-	}
+	} 
 	
 	@Override
 	//record the new data and notifyObservers()
