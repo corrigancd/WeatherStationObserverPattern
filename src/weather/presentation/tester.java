@@ -38,7 +38,7 @@ public class tester {
 		// obtained from: System.out.println(tester.class.getProtectionDomain().getCodeSource().getLocation().getPath()); 
 		ShowImage imgShow = new ShowImage(); // = new ShowImage();
 		if (foreCastDisplay.getForecast() == "Rain") {
-			imgShow.ShowImageOnScreen("rain.png");
+			imgShow.ShowImageOnScreen("sunny.png");
 		} else if (foreCastDisplay.getForecast() == "Sunshine") {
 			imgShow.ShowImageOnScreen("sunny.png");	
 		} else if (foreCastDisplay.getForecast() == "No Change") {
@@ -48,15 +48,3 @@ public class tester {
 		}
 	}  
 }
-		
-	
-
-
-
-
-
-
-
-
-
-
