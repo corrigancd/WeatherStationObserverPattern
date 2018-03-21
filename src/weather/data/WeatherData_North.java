@@ -58,6 +58,8 @@ public class WeatherData_North implements Subject, WeatherData {
 	@Override
 	public String toString() {
 		return "Weather Data North";
+		
+	
 	}
 }
 

@@ -10,7 +10,7 @@ public class ForecastDisplay implements Observer, DisplayElement {
 	private float lastPressure;
 	private Subject subject;
 	private String forecast  = INIT_FORECAST;
-
+	
 	public ForecastDisplay(Subject data) {
 		this.subject = data;
 		data.registerObserver(this);
@@ -39,8 +39,7 @@ public class ForecastDisplay implements Observer, DisplayElement {
 		System.out.println("Analyse: ");
 		System.out.println("Last pressure: " + lastPressure);
 		System.out.println("Current pressure: " + currentPressure);
-		System.out.println("Forecast: " + forecast);		
-		
+		System.out.println("Forecast: " + forecast);			
 	}
 
 	@Override

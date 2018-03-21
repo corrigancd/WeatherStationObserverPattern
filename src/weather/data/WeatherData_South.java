@@ -15,6 +15,7 @@ public class WeatherData_South implements Subject, WeatherData {
 	@Override
 	public void registerObserver(Observer o) {
 		observers.add(o);
+		System.out.println(observers.size());
 	}
 	
 	@Override
@@ -23,8 +24,7 @@ public class WeatherData_South implements Subject, WeatherData {
 	}
 	
 	@Override
-	//call the observers update method
-	public void notifyObservers() {
+	public void notifyObservers() { //call the observers update method
 		for (Observer o : observers) {
 			//iterate and call update method of observers
 			o.update(temperature, humidity, pressure);
