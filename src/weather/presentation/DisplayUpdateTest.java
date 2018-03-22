@@ -171,7 +171,7 @@ public class DisplayUpdateTest {
 		
 		weatherSouth.dataIn(temp, humidity, pressure);
 		
-		expected = "Rain";
+		expected = "No Change";
 		
 		assertEquals(expected, foreCastDisplay.getForecast());
 		

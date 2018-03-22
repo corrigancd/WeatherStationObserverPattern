@@ -4,8 +4,7 @@ import weather.data.InitProperties;
 import weather.data.Observer;
 import weather.data.Subject;
 	
-public class CurrentConditionsDisplay//
-		implements Observer, DisplayElement {
+public class CurrentConditionsDisplay implements Observer, DisplayElement {
 	private float temperature;
 	private float humidity;
 	private Subject subject;
@@ -15,8 +14,7 @@ public class CurrentConditionsDisplay//
 		data.registerObserver(this);
 	}
 	
-	public void update(float temperature,//
-			float humidity, float pressure) {
+	public void update(float temperature, float humidity, float pressure) {
 		this.temperature = temperature;
 		this.humidity = humidity;
 		display();
@@ -30,9 +28,9 @@ public class CurrentConditionsDisplay//
 	@Override
 	public void setSubject(Subject data) {
 		this.subject.removeObserver(this);
-		data.registerObserver(this);
 		this.subject = data;
 		this.reset();
+		data.registerObserver(this);
 	}
 
 	@Override
@@ -41,13 +39,11 @@ public class CurrentConditionsDisplay//
 	}
 	
 	public float getTemp(){
-		return this.temperature;
-		
+		return this.temperature;		
 	}
 	
 	public float getHumidity(){
 		return this.humidity;
-		
 	}
 	 
 	@Override

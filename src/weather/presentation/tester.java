@@ -33,12 +33,14 @@ public class tester {
 		foreCastDisplay.setSubject(weatherSouth);		
 		pressure = InitProperties.INIT_PRESSURE;		
 		weatherSouth.dataIn(temp, humidity, pressure);
-				
+	
+		
+	
 		// full path is \OO_assignment\OO_Assignment5\bin\weather\presentation\image.png
 		// obtained from: System.out.println(tester.class.getProtectionDomain().getCodeSource().getLocation().getPath()); 
 		ShowImage imgShow = new ShowImage(); // = new ShowImage();
 		if (foreCastDisplay.getForecast() == "Rain") {
-			imgShow.ShowImageOnScreen("sunny.png");
+			imgShow.ShowImageOnScreen("rain.png");
 		} else if (foreCastDisplay.getForecast() == "Sunshine") {
 			imgShow.ShowImageOnScreen("sunny.png");	
 		} else if (foreCastDisplay.getForecast() == "No Change") {
@@ -46,5 +48,8 @@ public class tester {
 		} else {
 			System.out.println("not a valid change");
 		}
+		
+		
+		
 	}  
 }

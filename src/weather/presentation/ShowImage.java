@@ -19,7 +19,7 @@ public class ShowImage extends Panel { // implements KeyListener {
     
     public void ShowImageOnScreen(String filename) {    	
         try {
-        	BufferedImage image = ImageIO.read(getClass().getResource("../../../src/weather/presentation/" +filename));
+        	BufferedImage image = ImageIO.read(getClass().getResource(filename));
             JFrame frame = new JFrame("Weather Widget"); //a graphical window for the image
                         
             frame.getContentPane().add(new JLabel(new ImageIcon(image))); // adding the image to the frame

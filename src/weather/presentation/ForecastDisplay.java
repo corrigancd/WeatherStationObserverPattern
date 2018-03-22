@@ -5,7 +5,7 @@ import weather.data.Observer;
 import weather.data.Subject;
 
 public class ForecastDisplay implements Observer, DisplayElement {
-	public static String INIT_FORECAST = "no change";
+	public static String INIT_FORECAST = "No Change";
 	private float currentPressure = InitProperties.INIT_PRESSURE;  
 	private float lastPressure;
 	private Subject subject;
