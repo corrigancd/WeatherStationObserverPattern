@@ -7,14 +7,11 @@ public class ForecastDisplay extends AbstractDisplay {
 	public static String INIT_FORECAST = "no change";
 	private String forecast  = INIT_FORECAST;
 	private float currentPressure = InitProperties.INIT_PRESSURE;  
-	private float lastPressure;
-	
+	private float lastPressure;	
 	// Constructor.
 	public ForecastDisplay(Subject data) {
-		this.subject = data;
-		data.registerObserver(this);
+		super(data);
 	}
-		
 	// Analyse data, update forecast string.
 	private void analyse() {
 		System.out.println("Analyse("+currentPressure +", "+lastPressure+")");
@@ -26,18 +23,8 @@ public class ForecastDisplay extends AbstractDisplay {
 			forecast = "rain";
 		}		
 	}
-
-	// OBSERVER INTERFACE METHODS:
 	
-	// Register this observer with the data object.
-	@Override
-	public void setSubject(Subject data) {
-		this.subject.registerObserver(this);
-		data.registerObserver(this);
-		this.subject = data;
-		this.reset();
-	}
-	
+	// | -- OBSERVER INTERFACE METHODS -- |
 	// Update parameters and display.
 	public void update(float temp, float humidity, float pressure) {
         lastPressure = currentPressure;
@@ -46,22 +33,14 @@ public class ForecastDisplay extends AbstractDisplay {
 		display();
 	}
 	
-	// DISPLAYELEMENT INTERFACE METHODS:
-	
-	@Override
-	// Print a text version of the display's output
+	// | -- DISPLAY ELEMENT INTERFACE -- |
+	// Print string to console.
 	public void display() {
 		System.out.println( subject.toString()+"\n"+
 						   "Current Pressure: "+currentPressure+"\n"+
 						   "Last    Pressure: "+lastPressure+"\n"+
 						   "Forecast        : "+forecast);
 	}
-	@Override
-	// De-register self from subject
-	public void close() {
-		this.subject.removeObserver(this);
-	}
-	@Override
 	// Reset to default values
 	public void reset(){
 		this.currentPressure = InitProperties.INIT_PRESSURE;  
@@ -69,6 +48,7 @@ public class ForecastDisplay extends AbstractDisplay {
 		this.forecast = INIT_FORECAST;
 	}
 	
+
 	
 	
 	// Getters.

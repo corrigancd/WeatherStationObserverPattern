@@ -14,21 +14,23 @@ import javax.swing.JLabel;
 
 public class ShowImage extends Panel {
     private static final long serialVersionUID = 1L;
-
+    // Constructor
     public ShowImage() {}  
-    
-    public void ShowImageOnScreen(String filename, String fcast, double cpres, double lpres, double ctemp, double chumd) {    	
+    public void ShowImageOnScreen(String filename, String fcast, 
+    							  double cpres, double lpres, 
+    							  double ctemp, double chumd) {    	
         try {
         	// Calculate pressure difference.
-        	double pdif = lpres-cpres;
-        	
+        	double pdif = lpres-cpres; 	
         	// Set display string from data parameters.
-        	String fcastString  = "<html>Pressure Change: " + pdif + " bar<br/>    Forecast: " + fcast+"</html>";
-        	String curConditions = "<html>Temp: " + ctemp + " C<br/>       Humidity: "+ chumd+" %</html>";
+        	String fcastString  = "<html>Pressure Change: "+pdif+" bar<br/>Forecast: " + fcast+"</html>";
+        	String curConditions = "<html>Temp: " + ctemp + " F<br/>Humidity: "+ chumd+" %</html>";
+        	
         	// Create JLabels for display strings.
         	JLabel forecast = new JLabel(fcastString);
         	JLabel current  = new JLabel(curConditions);
         	Font font = new Font("SansSerif", 10, 30);
+        	
         	// Read image, create JFrame and set layout to Box.
         	BufferedImage image = ImageIO.read(getClass().getResource(filename));
             JFrame frame = new JFrame("Weather Widget"); //a graphical window for the image
@@ -40,7 +42,8 @@ public class ShowImage extends Panel {
             frame.getContentPane().add(new JLabel(img)); 
             // Set dimensions.
             Dimension textSize = new Dimension(250, 80);
-            Dimension framesize = new Dimension(img.getIconWidth(), (int) (img.getIconHeight()+textSize.getHeight()+150));
+            Dimension framesize = new Dimension(img.getIconWidth(), 
+            		(int) (img.getIconHeight()+textSize.getHeight()+150));
             
             // Set font and test sizes.
             forecast.setPreferredSize( textSize );            

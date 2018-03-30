@@ -1,5 +1,4 @@
 package presentation;
-
 import static org.junit.Assert.*;
 
 //import org.junit.Test;
@@ -16,30 +15,27 @@ public class DisplayUpdateTest {
 	
 	@Test
 	public void testCurrentConditionsUpdate() {	
+		System.out.println("\n| ---------------------------------------- |");
+		  System.out.println("| -- Testing:  CurrentConditions Update -- |");
+		System.out.println("| ---------------------------------------- |\n");
 		/**
 		 * 2 sources of Data
 		 */
 		WeatherData_East weatherEast = new WeatherData_East();
-		WeatherData_West weatherWest = new WeatherData_West();
-	
-		/**
-		 * CurrentConditionsDisplay display widgets observing 
-		 * the WeatherData_East object
-		 */
-		
+		WeatherData_West weatherWest = new WeatherData_West();	
 		// Create a new Display, assigning a data source. 
 		CurrentConditionsDisplay currentDisplay = 
 			new CurrentConditionsDisplay(weatherEast);
-		
+		System.out.println("\n| -- Test 1 -- |\n");
 		// Set data values and pass to Data source ( that is observed )
-		float temp = 80;
-		float humidity =65;
-		float pressure = 30.4f;
+		float temp = 80, 
+			  humidity =65, 
+			  pressure = 30.4f;
 		weatherEast.dataIn(temp, humidity, pressure);		
 		// Run tests.
 		assertEquals(temp, currentDisplay.getTemp(), 0.001f);
 		assertEquals(humidity, currentDisplay.getHumidity(), 0.001f);
-		
+		System.out.println("\n| -- Test 2 -- |\n");
 		// Set new data and pass to Data source.
 		temp = 24;
 		humidity = 32;
@@ -49,140 +45,112 @@ public class DisplayUpdateTest {
 		assertEquals(temp, currentDisplay.getTemp(), 0.001f);
 		assertEquals(humidity, currentDisplay.getHumidity(), 0.001f);
 		
-		
+		System.out.println("\n| -- Test 3 -- |\n");
 		// Change data source
 		currentDisplay.setSubject(weatherWest);
-		
 		// Set new data
 		temp = 65;
 		humidity = 46;
 		pressure =36.5f;
 		weatherWest.dataIn(temp, humidity, pressure);
-		
 		// Run tests. 
 		assertEquals(temp, currentDisplay.getTemp(), 0.001f);
 		assertEquals(humidity, currentDisplay.getHumidity(), 0.001f);
-		
-
 	}
 
 	@Test
 	public void testStatsUpdate() {	
-		/**
-		 * 2 sources of Data
-		 */
+		System.out.println("\n| --------------------------------- |");
+		System.out.println("| -- Testing:  Statistics Update -- |");
+		System.out.println("| --------------------------------- |\n");
+		// Data sources.
 		WeatherData_North weatherNorth = new WeatherData_North();
 		WeatherData_West weatherWest = new WeatherData_West();
-	
-		/**
-		 * StatisticsDisplay display widget observing 
-		 * the WeatherData_East object
-		 */
-		StatisticsDisplay statsDisplay = 
-			new StatisticsDisplay(weatherNorth);
-		
-		//new data
-		float temp = 80;
-		float humidity =65;
-		float pressure = 30.4f;
-		
-		//expected data
+		// Test object.
+		StatisticsDisplay statsDisplay =new StatisticsDisplay(weatherNorth);
+		System.out.println("\n| -- Test 1 -- |\n");
+		// New data
+		float temp = 80,humidity =65, pressure = 30.4f;
+		// Expected data
 		int readings=1;
-		float maxTemp = 80;
-		float minTemp = 80;
-		float aveTemp = maxTemp/readings;
-		
-		//set new data
+		float maxTemp = 80, minTemp = 80, aveTemp = maxTemp/readings;
 		weatherNorth.dataIn(temp, humidity, pressure);
+		// Run Tests
 		assertEquals(aveTemp, statsDisplay.getAveTemp(), 0.001f);
 		assertEquals(maxTemp, statsDisplay.getMaxTemp(), 0.001f);
 		assertEquals(minTemp, statsDisplay.getMinTemp(), 0.001f);
-		
-		//change data
+		System.out.println("\n| -- Test 2 -- |\n");
+		// Change data.
 		temp = 24;
 		humidity = 32;
 		pressure = 20.2f;
-		
 		readings++;
-
 		minTemp = 24;
-		aveTemp = (maxTemp+temp)/readings;
-		
-		//set new data
+		aveTemp = (maxTemp+temp)/readings;	
 		weatherNorth.dataIn(temp, humidity, pressure);
+		// Run Tests
 		assertEquals(aveTemp, statsDisplay.getAveTemp(), 0.001f);
 		assertEquals(maxTemp, statsDisplay.getMaxTemp(), 0.001f);
 		assertEquals(minTemp, statsDisplay.getMinTemp(), 0.001f);
-		
-		/**
-		 * change data source to weatherWest
-		 */
+		System.out.println("\n| -- Test 3 -- |\n");
+		// Change data source to weatherWest
 		statsDisplay.setSubject(weatherWest);
-		
-		//new data
+		// New data
 		temp = 65;
 		humidity = 46;
 		pressure =36.5f;
-		
 		readings = 1;
 		maxTemp = 65;
 		minTemp=65;
-		aveTemp = maxTemp/readings;
-		
-		//set new data
+		aveTemp = maxTemp/readings;	
 		weatherWest.dataIn(temp, humidity, pressure);
+		// Run Tests.
 		assertEquals(aveTemp, statsDisplay.getAveTemp(), 0.001f);
 		assertEquals(maxTemp, statsDisplay.getMaxTemp(), 0.001f);
 		assertEquals(minTemp, statsDisplay.getMinTemp(), 0.001f);
 	}
 	
 	@Test
-	public void testForeCastUpdate() {	
-		
-		/**
-		 * 2 sources of Data
-		 */
+	public void testForeCastUpdate() {		
+		System.out.println("\n| ------------------------------- |");
+		System.out.println("| -- Testing:  Forecast Update -- |");
+		System.out.println("| ------------------------------- |\n");
+		// Data Objects
 		WeatherData_East weatherEast = new WeatherData_East();
 		WeatherData_South weatherSouth = new WeatherData_South();
-		
-		/**
-		 * ForecastDisplay display widgets observing 
-		 * the WeatherData_East object
-		 */
-		ForecastDisplay foreCastDisplay = new ForecastDisplay(weatherEast);	
-		//new data
-		float temp = 80;
-		float humidity =65;
-		float pressure = 30.4f;
+		// Test Object.
+		ForecastDisplay foreCastDisplay = new ForecastDisplay(weatherEast);
+		System.out.println("\n| - TEST 1 - |\n");
+		// New test data
+		float temp = 80, humidity =65, pressure = 30.4f;
 		String expected = "sunshine";
-		System.out.println("| - TEST 1 - |");
 		weatherEast.dataIn(temp, humidity, pressure);
+		// Run Test.
 		assertEquals(expected, foreCastDisplay.getForecast());
 		System.out.println(expected +"  "+ foreCastDisplay.getForecast());
+		System.out.println("\n| - TEST 2 - |\n");
 		//new pressure data arrives
 		pressure = 28.1f;
 		expected = "rain"; // change expectation
-		System.out.println("| - TEST 2 - |");
 		weatherEast.dataIn(temp, humidity, pressure);
+		// Run Test.
 		assertEquals(expected, foreCastDisplay.getForecast());
 		System.out.println(expected +"  "+ foreCastDisplay.getForecast());
-		
+		System.out.println("\n| - TEST 3 - |\n");
 		//Change source of data to weatherSest
-		System.out.println("| - TEST 3 - |");
 		foreCastDisplay.setSubject(weatherSouth);
-		
+		// Set to initial value.
 		pressure = InitProperties.INIT_PRESSURE;	
-		
+		expected = "no change"; // change expectation
 		weatherSouth.dataIn(temp, humidity, pressure);
-		
 		System.out.println(weatherSouth.getTemperature()+"  "+
 				   weatherSouth.getHumidity()+"  "+
 				   weatherSouth.getPressure());
 		foreCastDisplay.display();
-		expected = "no change"; // change expectation
+		// Run Test.
 		System.out.println(expected +"  "+ foreCastDisplay.getForecast());
 		assertEquals(expected, foreCastDisplay.getForecast());
-		
-		
 	}
 }
+
+
